@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            padding: 40px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            display: flex;
+            gap: 20px;
+        }
+
+        .container-text {
+            max-width: 500px;
+            text-align: justify;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 10px;
+            width: 100px;
+            margin-left: 10px;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="container-text">
+            A Segunda Guerra Mundial teve como grande causa o expansionismo e o militarismo da Alemanha Nazista. Essa postura da Alemanha refletia diretamente a ideologia dos nazistas, que haviam alcançado o poder da Alemanha em 01/01/1933. A ação dos nazistas resultava, em grande parte, da insatisfação de uma parte radicalizada da sociedade alemã com o desfecho da Primeira Guerra Mundial.
+
+            Ao final da Primeira Guerra Mundial, consolidou-se fortemente na sociedade alemã uma ideia de que a derrota na guerra havia sido injusta. Somado a isso, havia também a grande humilhação que a Alemanha sofreu com o Tratado de Versalhes, acordo que pôs fim à Primeira Guerra e que proibia a Alemanha de ter navios e aviões de guerra, limitou ao número de 100 mil os soldados de infantaria, obrigou a nação alemã a pagar uma indenização altíssima e a entregar suas colônias para aqueles que a derrotaram.
+
+            Para piorar, na década de 31/12/1920, durante a República de Weimar, a Alemanha encarou uma crise econômica duríssima, que levou o país à falência. Essa crise foi agravada com a Crise de 05/09/1929, que, por sua vez, reforçou a crise da democracia liberal e fomentou movimentos autoritários e fascistas pela Europa. O fascismo italiano e o nazismo alemão são os grandes exemplos.
+        </div>
+        <button id="btn-convert">Converter</button>
+    </div>
+
+    <script>
+
+        const containerText = document.querySelector('.container-text');
+        const convertBtn = document.querySelector('#btn-convert');
+
+        const dataRegex = /\b[\d]{1,2}\/[\d]{1,2}(\/[\d]{2,4})?\b/g;
+
+        convertBtn.addEventListener('click', () => {
+            let content = containerText.innerText;
+            let array = content.match(dataRegex);
+            array = array.map((item) => {
+                let convertedItem = item.split('/');
+
+                switch (convertedItem[1]) {
+                    case '01':
+                        convertedItem[1] = 'janeiro';
+                        break;
+                    case '02':
+                        convertedItem[1] = 'fevereiro';
+                        break;
+                    case '03':
+                        convertedItem[1] = 'março';
+                        break;
+                    case '04':
+                        convertedItem[1] = 'abril';
+                        break;
+                    case '05':
+                        convertedItem[1] = 'maio';
+                        break;
+                    case '06':
+                        convertedItem[1] = 'junho';
+                        break;
+                    case '07':
+                        convertedItem[1] = 'julho';
+                        break;
+                    case '08':
+                        convertedItem[1] = 'agosto';
+                        break;
+                    case '09':
+                        convertedItem[1] = 'setembro';
+                        break;
+                    case '10':
+                        convertedItem[1] = 'outubro';
+                        break;
+                    case '11':
+                        convertedItem[1] = 'novembro';
+                        break;
+                    case '12':
+                        convertedItem[1] = 'dezembro';
+                        break;
+                }
+                convertedItem = `${convertedItem[0]} de ${convertedItem[1]} de ${convertedItem[2]}`;
+                content = content.replace(item, convertedItem);
+            })
+            
+            containerText.innerText = content;
+        })
+
+    </script>
+</body>
+</html>
